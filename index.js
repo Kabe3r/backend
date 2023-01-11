@@ -1,4 +1,5 @@
 const express = require("express");
+const port = process.env.Port || 3000;
 const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
@@ -35,7 +36,7 @@ app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
 
-app.listen("3000", () => {
-      console.log("Server is running.");
+app.listen(port, () => {
+      console.log(`Server is running on ${port}`);
 })
 
