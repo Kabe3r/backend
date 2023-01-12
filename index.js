@@ -18,7 +18,7 @@ mongoose.connect(process.env.MONGO_URL)
 .catch(err => console.log(err));
 
 app.use((req, res, next) => {
-      res.setHeader("Access-Control-Allow-Origin", "https://superlative-alpaca-20c7f8.netlify.app");
+      res.setHeader("Access-Control-Allow-Origin", "*");
       res.header(
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept"
