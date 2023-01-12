@@ -33,7 +33,7 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
 });
 
 app.use((req, res, next) => {
-      res.setHeader("Access-Control-Allow-Origin", "https://filthy-housecoat-dove.cyclic.app");
+      res.setHeader("Access-Control-Allow-Origin", "*");
       res.header(
         "Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept"
