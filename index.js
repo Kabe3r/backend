@@ -1,5 +1,4 @@
 const express = require("express");
-const port = process.env.Port || 3000;
 const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
@@ -8,6 +7,7 @@ const userRoute = require("./routes/users");
 const postRoute = require("./routes/posts");
 const multer = require("multer");
 const path = require("path"); 
+const port = process.env.Port || 3000;
 
 dotenv.config();
 app.use(express.json());
