@@ -32,6 +32,15 @@ app.post("/api/upload", upload.single("file"), (req, res) => {
   res.status(200).json("File has been uploaded.");
 });
 
+app.use((req, res, next) => {
+      res.setHeader("Access-Control-Allow-Origin", "https://superlative-alpaca-20c7f8.netlify.app");
+      res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept"
+      );
+      next();
+});
+
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/posts", postRoute);
