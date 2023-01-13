@@ -17,12 +17,6 @@ mongoose.connect(process.env.MONGO_URL)
 .then(console.log("Connected to mongodb"))
 .catch(err => console.log(err));
 
-app.use(function (req, res, next) {
-      res.header("Access-Control-Allow-Origin", "*");
-      res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
-      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-      next();
-    });
 
 //Using multer for serving the images
 const storage = multer.diskStorage({
@@ -36,8 +30,15 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage});
 app.post("/api/upload", upload.single("file"), (req, res) => {
-  res.status(200).json("File has been uploaded.");
+      res.status(200).json("File has been uploaded.");
 });
+
+app.use(function (req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE, upload");
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+      next();
+    });
 
 
 app.use("/api/auth", authRoute);
