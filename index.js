@@ -17,14 +17,12 @@ mongoose.connect(process.env.MONGO_URL)
 .then(console.log("Connected to mongodb"))
 .catch(err => console.log(err));
 
-app.use((req, res, next) => {
-      res.setHeader("Access-Control-Allow-Origin", "*");
-      res.header(
-        "Access-Control-Allow-Headers",
-        "Origin, X-Requested-With, Content-Type, Accept"
-      );
+app.use(function (req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Methods", "GET, PUT, POST, DELETE");
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
       next();
-});
+    });
 
 //Using multer for serving the images
 const storage = multer.diskStorage({
